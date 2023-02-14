@@ -1,0 +1,34 @@
+from art import logo
+print(logo)
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+
+def ceaser(start_text,start_shift,direction):
+    new_word=""
+    for char in start_text:
+        if char in alphabet:
+            old_index=alphabet.index(char)
+            if direction=="encode":
+                new_index=old_index+start_shift
+                if new_index>25:
+                   new_index=new_index-26
+                encrypted_letter=alphabet[new_index]
+                new_word+=encrypted_letter
+        
+            elif direction=="decode":
+                 new_index=old_index-start_shift
+                 if new_index<0:
+                    new_index=26-(-new_index)
+                 encrypted_letter=alphabet[new_index]
+                 new_word+=encrypted_letter
+    
+        else:
+            new_word+=char
+    print(f"The {direction}d message is {new_word}")
+    
+user_descision="yes"
+while user_descision=="yes":
+    options=input("Type 'encode' to encrypt,Type 'decode' to decrypt.\n")
+    text=input("Type your message: ")
+    shift=int(input("Type the shift number: "))
+    ceaser(start_text=text,start_shift=shift,direction=options)
+    user_descision=input("Type 'yes' if you want to run again,otherwise type'no' to stop\n")
